@@ -1,0 +1,539 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="Summer Security Checklist | Shore Security Solutions"
+			description="A summer security checklist for Outer Banks businesses — protect your business during peak tourism season with Shore Security Solutions."
+		/>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap');
+
+			.brochure-wrapper {
+				background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+				padding: 40px 20px 60px;
+				min-height: 80vh;
+			}
+
+			.brochure-container {
+				max-width: 800px;
+				margin: 0 auto;
+				background: white;
+				box-shadow: 0 8px 32px rgba(0, 48, 135, 0.15);
+				border-radius: 12px;
+				overflow: hidden;
+			}
+
+			.brochure-side {
+				min-height: 100vh;
+				position: relative;
+			}
+
+			.side-toggle {
+				display: block;
+				margin: 0 auto 24px;
+				background: #003087;
+				color: white;
+				padding: 12px 28px;
+				border: none;
+				border-radius: 25px;
+				cursor: pointer;
+				font-weight: 600;
+				font-family: 'Montserrat', sans-serif;
+				font-size: 0.95em;
+				transition: all 0.3s ease;
+				box-shadow: 0 4px 15px rgba(0, 48, 135, 0.3);
+			}
+
+			.side-toggle:hover {
+				background: #004097;
+				transform: translateY(-2px);
+			}
+
+			/* Front Side Styles */
+			.front-side {
+				background: linear-gradient(135deg, rgba(0, 48, 135, 0.9) 0%, rgba(0, 48, 135, 0.7) 100%),
+					url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="ocean" x1="0%25" y1="0%25" x2="100%25" y2="100%25"><stop offset="0%25" style="stop-color:%23A3D9C4;stop-opacity:1" /><stop offset="100%25" style="stop-color:%2387CEEB;stop-opacity:1" /></linearGradient></defs><rect width="1200" height="600" fill="url(%23ocean)"/><polygon points="200,300 300,280 400,320 500,290 600,310 700,285 800,305 900,290 1000,315 1100,295 1200,300 1200,600 0,600" fill="%23F5E6CC" opacity="0.8"/><circle cx="900" cy="150" r="80" fill="%23FFFFFF" opacity="0.9"/><rect x="895" y="90" width="10" height="120" fill="%23003087"/><polygon points="900,90 885,110 915,110" fill="%23FF6B6B"/></svg>');
+				background-size: cover;
+				background-position: center;
+				color: white;
+				padding: 40px;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+
+			.logo-section {
+				display: flex;
+				align-items: center;
+				gap: 15px;
+				margin-bottom: 30px;
+			}
+
+			.logo {
+				width: 60px;
+				height: 60px;
+				background: rgba(255, 255, 255, 0.2);
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				backdrop-filter: blur(10px);
+				border: 2px solid rgba(255, 255, 255, 0.3);
+				font-size: 1.8em;
+			}
+
+			.company-name {
+				font-family: 'Montserrat', sans-serif;
+				font-weight: 700;
+				font-size: 1.3em;
+				text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+			}
+
+			.header-title {
+				font-family: 'Montserrat', sans-serif;
+				font-weight: 700;
+				font-size: 2.2em;
+				margin-bottom: 15px;
+				text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+				line-height: 1.2;
+			}
+
+			.subtitle {
+				font-size: 1.1em;
+				margin-bottom: 25px;
+				font-weight: 300;
+				opacity: 0.95;
+			}
+
+			.intro-text {
+				font-size: 0.95em;
+				line-height: 1.6;
+				margin-bottom: 30px;
+				background: rgba(255, 255, 255, 0.1);
+				padding: 20px;
+				border-radius: 10px;
+				backdrop-filter: blur(5px);
+			}
+
+			.risks-section {
+				background: rgba(255, 255, 255, 0.95);
+				color: #003087;
+				padding: 25px;
+				border-radius: 15px;
+				margin-bottom: 25px;
+				backdrop-filter: blur(10px);
+			}
+
+			.risks-title {
+				font-family: 'Montserrat', sans-serif;
+				font-weight: 600;
+				font-size: 1.3em;
+				margin-bottom: 20px;
+				color: #003087;
+			}
+
+			.risk-item {
+				display: flex;
+				align-items: center;
+				gap: 12px;
+				margin-bottom: 12px;
+				font-size: 0.9em;
+			}
+
+			.risk-icon {
+				width: 24px;
+				height: 24px;
+				background: #A3D9C4;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 12px;
+				flex-shrink: 0;
+			}
+
+			.cta-box {
+				background: linear-gradient(135deg, #A3D9C4 0%, #87CEEB 100%);
+				color: #003087;
+				padding: 25px;
+				border-radius: 15px;
+				text-align: center;
+				border: 3px solid rgba(255, 255, 255, 0.3);
+			}
+
+			.cta-title {
+				font-family: 'Montserrat', sans-serif;
+				font-weight: 700;
+				font-size: 1.2em;
+				margin-bottom: 15px;
+			}
+
+			.contact-info {
+				font-size: 0.9em;
+				line-height: 1.8;
+			}
+
+			/* Back Side Styles */
+			.back-side {
+				display: none;
+				background: #F5E6CC;
+				color: #003087;
+				padding: 0;
+			}
+
+			.back-header {
+				background: linear-gradient(135deg, #003087 0%, #004097 100%);
+				color: white;
+				padding: 30px 40px;
+				text-align: center;
+			}
+
+			.back-title {
+				font-family: 'Montserrat', sans-serif;
+				font-weight: 700;
+				font-size: 2em;
+				margin-bottom: 8px;
+			}
+
+			.back-subtitle {
+				font-size: 1.1em;
+				opacity: 0.9;
+			}
+
+			.checklist-container {
+				padding: 30px 40px;
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 25px;
+			}
+
+			.checklist-item {
+				background: white;
+				padding: 20px;
+				border-radius: 12px;
+				box-shadow: 0 4px 15px rgba(0, 48, 135, 0.1);
+				border-left: 4px solid #A3D9C4;
+				transition: transform 0.3s ease;
+			}
+
+			.checklist-item:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 8px 25px rgba(0, 48, 135, 0.15);
+			}
+
+			.item-number {
+				background: #003087;
+				color: white;
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-weight: 700;
+				margin-bottom: 12px;
+				font-size: 0.9em;
+			}
+
+			.item-title {
+				font-family: 'Montserrat', sans-serif;
+				font-weight: 600;
+				font-size: 1em;
+				margin-bottom: 8px;
+				color: #003087;
+			}
+
+			.item-risk {
+				font-size: 0.85em;
+				color: #666;
+				margin-bottom: 8px;
+				font-style: italic;
+			}
+
+			.item-solution {
+				font-size: 0.85em;
+				margin-bottom: 8px;
+			}
+
+			.item-help {
+				font-size: 0.8em;
+				background: #A3D9C4;
+				padding: 8px 12px;
+				border-radius: 6px;
+				color: #003087;
+				font-weight: 500;
+			}
+
+			.back-footer {
+				background: #003087;
+				color: white;
+				padding: 25px 40px;
+				text-align: center;
+			}
+
+			.footer-title {
+				font-family: 'Montserrat', sans-serif;
+				font-weight: 600;
+				font-size: 1.1em;
+				margin-bottom: 15px;
+			}
+
+			.footer-contact {
+				font-size: 0.9em;
+				line-height: 1.8;
+			}
+
+			.show-back .front-side {
+				display: none;
+			}
+
+			.show-back .back-side {
+				display: block;
+			}
+
+			@media (max-width: 768px) {
+				.checklist-container {
+					grid-template-columns: 1fr;
+					gap: 20px;
+				}
+
+				.front-side,
+				.back-header,
+				.checklist-container,
+				.back-footer {
+					padding: 20px;
+				}
+
+				.header-title {
+					font-size: 1.8em;
+				}
+
+				.back-title {
+					font-size: 1.6em;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="brochure-wrapper">
+				<button class="side-toggle" id="side-toggle-btn" onclick="toggleSide()">
+					View Back Side
+				</button>
+
+				<div class="brochure-container" id="brochure-container">
+					<!-- Front Side -->
+					<div class="brochure-side front-side">
+						<div>
+							<div class="logo-section">
+								<div class="logo">🛡️</div>
+								<div class="company-name">Shore Security Solutions</div>
+							</div>
+
+							<h1 class="header-title">Summer Security Checklist</h1>
+							<div class="subtitle">Protect Your Business During Peak Tourism</div>
+
+							<div class="intro-text">
+								The Outer Banks' summer season brings waves of tourists—and cyber risks that can sink
+								your business. Unsecured guest Wi-Fi, phishing scams targeting seasonal staff, and
+								stolen tourist data can lead to costly breaches. Shore Security Solutions helps OBX
+								businesses stay secure so you can focus on delivering exceptional guest experiences.
+							</div>
+						</div>
+
+						<div>
+							<div class="risks-section">
+								<h3 class="risks-title">Key Summer Cyber Risks</h3>
+								<div class="risk-item">
+									<div class="risk-icon">📶</div>
+									<div>
+										<strong>Unsecured Guest Wi-Fi:</strong> Vacationers' devices can expose your network
+										to hackers
+									</div>
+								</div>
+								<div class="risk-item">
+									<div class="risk-icon">📧</div>
+									<div>
+										<strong>Phishing Scams:</strong> Fake booking or payment emails can trick seasonal
+										staff
+									</div>
+								</div>
+								<div class="risk-item">
+									<div class="risk-icon">💳</div>
+									<div>
+										<strong>Payment Data Theft:</strong> Stolen tourist data risks PCI DSS fines and
+										lost trust
+									</div>
+								</div>
+								<div class="risk-item">
+									<div class="risk-icon">🔒</div>
+									<div>
+										<strong>Ransomware Attacks:</strong> Breaches can lock your booking system during
+										peak season
+									</div>
+								</div>
+								<div class="risk-item">
+									<div class="risk-icon">🔑</div>
+									<div>
+										<strong>Weak Passwords:</strong> Reused passwords for Wi-Fi or staff accounts invite
+										attacks
+									</div>
+								</div>
+							</div>
+
+							<div class="cta-box">
+								<div class="cta-title">Don't Let Cyber Threats Ruin Your Summer!</div>
+								<div class="contact-info">
+									Schedule a free 15-minute consultation with Shore Security Solutions<br />
+									<strong>📧 ceo@jarwoodproductions.com</strong><br />
+									<strong>📞 (252) 564-5276</strong><br />
+									<strong>🌐 www.shoresecurityobx.com</strong>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Back Side -->
+					<div class="brochure-side back-side">
+						<div class="back-header">
+							<h2 class="back-title">7 Essential Steps to Secure Your Outer Banks Business</h2>
+							<div class="back-subtitle">Keep Your Guests Happy and Your Data Safe This Summer</div>
+						</div>
+
+						<div class="checklist-container">
+							<div class="checklist-item">
+								<div class="item-number">1</div>
+								<div class="item-title">Isolate Guest Wi-Fi Networks</div>
+								<div class="item-risk">
+									Risk: Guests' devices can access your booking systems if Wi-Fi isn't segmented
+								</div>
+								<div class="item-solution">
+									Set up separate guest and staff networks with WPA3 encryption
+								</div>
+								<div class="item-help">We configure secure guest Wi-Fi for rentals and businesses</div>
+							</div>
+
+							<div class="checklist-item">
+								<div class="item-number">2</div>
+								<div class="item-title">Automate Password Management</div>
+								<div class="item-risk">Risk: Weak passwords are easily exploited by cybercriminals</div>
+								<div class="item-solution">
+									Use automated, time-limited passwords that reset regularly
+								</div>
+								<div class="item-help">
+									Our platform integrates with Airbnb, Vrbo, and POS systems
+								</div>
+							</div>
+
+							<div class="checklist-item">
+								<div class="item-number">3</div>
+								<div class="item-title">Encrypt Tourist Data</div>
+								<div class="item-risk">
+									Risk: Stolen payment data leads to PCI DSS fines and reputation damage
+								</div>
+								<div class="item-solution">
+									Encrypt all customer data and ensure compliance standards
+								</div>
+								<div class="item-help">
+									We deploy industry-standard encryption and secure cloud storage
+								</div>
+							</div>
+
+							<div class="checklist-item">
+								<div class="item-number">4</div>
+								<div class="item-title">Monitor for Threats in Real-Time</div>
+								<div class="item-risk">
+									Risk: Phishing or malware can go unnoticed, compromising systems
+								</div>
+								<div class="item-solution">
+									Use AI-driven tools to detect unusual activity in real-time
+								</div>
+								<div class="item-help">Our AI monitoring provides clear alerts and dashboards</div>
+							</div>
+
+							<div class="checklist-item">
+								<div class="item-number">5</div>
+								<div class="item-title">Prepare for Rapid Response</div>
+								<div class="item-risk">
+									Risk: Peak season breaches can halt bookings, costing thousands
+								</div>
+								<div class="item-solution">
+									Have a 24/7 response plan to contain and recover quickly
+								</div>
+								<div class="item-help">
+									We offer 24/7 support to mitigate breaches and restore systems
+								</div>
+							</div>
+
+							<div class="checklist-item">
+								<div class="item-number">6</div>
+								<div class="item-title">Train Seasonal Staff</div>
+								<div class="item-risk">
+									Risk: New staff may not recognize phishing or follow security protocols
+								</div>
+								<div class="item-solution">
+									Train your team to spot scams and handle data securely
+								</div>
+								<div class="item-help">
+									Our online modules and workshops equip staff for success
+								</div>
+							</div>
+
+							<div class="checklist-item" style="grid-column: 1 / -1;">
+								<div class="item-number">7</div>
+								<div class="item-title">Back Up Critical Systems</div>
+								<div class="item-risk">
+									Risk: Ransomware can erase bookings or financial records, disrupting operations
+								</div>
+								<div class="item-solution">
+									Maintain encrypted, off-site backups with regular testing
+								</div>
+								<div class="item-help">
+									We set up secure backups and recovery plans to keep your business running
+								</div>
+							</div>
+						</div>
+
+						<div class="back-footer">
+							<div class="footer-title">Shore Security Solutions: Your Local Cybersecurity Partner</div>
+							<div class="footer-contact">
+								Free Consultation | www.shoresecurityobx.com | (252) 564-5276<br />
+								Follow @ShoreSecurityOBX for more summer security tips
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<Footer />
+
+		<script>
+			let showingBack = false;
+
+			function toggleSide() {
+				const container = document.getElementById('brochure-container');
+				const btn = document.getElementById('side-toggle-btn');
+
+				showingBack = !showingBack;
+
+				if (showingBack) {
+					container?.classList.add('show-back');
+					if (btn) btn.textContent = 'View Front Side';
+				} else {
+					container?.classList.remove('show-back');
+					if (btn) btn.textContent = 'View Back Side';
+				}
+			}
+
+			// Expose to global scope for onclick attribute
+			(window as any).toggleSide = toggleSide;
+		</script>
+	</body>
+</html>
